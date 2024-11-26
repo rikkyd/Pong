@@ -26,11 +26,13 @@ public class MainMenuManager : MonoBehaviour
 
      public void SinglePlayerButton()
     {
+        GameData.instance.isSinglePlayer = true;
         TimerPanel.SetActive(true);
     }
 
     public void MultiPlayerButton()
     {
+        GameData.instance.isSinglePlayer = false;
         TimerPanel.SetActive(true);
     }
     
@@ -42,6 +44,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void SetTimerButton(float Timer)
     {
+        GameData.instance.gameTimer = Timer;
         TimerPanel.SetActive(false);
         HTPPanel.SetActive(true);
     }
