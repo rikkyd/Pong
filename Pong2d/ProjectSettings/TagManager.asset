@@ -9,6 +9,7 @@ TagManager:
   - Racket Red
   - Racket Blue
   - Ball
+  - PowerUp
   layers:
   - Default
   - TransparentFX

@@ -28,18 +28,21 @@ public class MainMenuManager : MonoBehaviour
     {
         GameData.instance.isSinglePlayer = true;
         TimerPanel.SetActive(true);
+        soundManager.instance.UIClickSfx();
     }
 
     public void MultiPlayerButton()
     {
         GameData.instance.isSinglePlayer = false;
         TimerPanel.SetActive(true);
+        soundManager.instance.UIClickSfx();
     }
     
     public void BackButton()
     {
         TimerPanel.SetActive(false);
         HTPPanel.SetActive(false);
+        soundManager.instance.UIClickSfx();
     }
 
     public void SetTimerButton(float Timer)
@@ -47,11 +50,13 @@ public class MainMenuManager : MonoBehaviour
         GameData.instance.gameTimer = Timer;
         TimerPanel.SetActive(false);
         HTPPanel.SetActive(true);
+        soundManager.instance.UIClickSfx();
     }
 
     public void StartBtn()
     {
         SceneManager.LoadScene("2. Gameplay");
+        soundManager.instance.UIClickSfx();
     }
 
     public void ExitGame()

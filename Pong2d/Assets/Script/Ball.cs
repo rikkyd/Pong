@@ -6,6 +6,8 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rb;
     public float speed;
     public bool isBounce;
+    public bool bonusGoal;
+    public bool isLastHit1;
 
     // Start is called before the first frame update
     void Start()
@@ -37,21 +39,66 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        soundManager.instance.BallBounceSfx();
         if (col.gameObject.tag == "Racket Red" && !isBounce)
         {
-            Vector2 dir = new Vector2(1, 0).normalized;
+            float randomX = Random.Range(0.5f, 1.0f); 
+            float randomY = Random.Range(-1.0f, 1.0f); 
+            Vector2 dir = new Vector2(randomX, randomY).normalized;
+
             rb.velocity = dir * speed;
             StartCoroutine("DelayBounce");
+            isLastHit1 = true;
         }
 
         if (col.gameObject.tag == "Racket Blue" && !isBounce)
         {
-            Vector2 dir = new Vector2(-1, 0).normalized;
+            float randomX = Random.Range(-1.0f, -0.5f);
+            float randomY = Random.Range(-1.0f, 1.0f); 
+            Vector2 dir = new Vector2(randomX, randomY).normalized;
+
             rb.velocity = dir * speed;
             StartCoroutine("DelayBounce");
+            isLastHit1 = false;
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Goal 1")
+        {
+            soundManager.instance.GoalSfx();
+            GameManager.instance.player2Score++;
+            if (bonusGoal)
+            {
+                GameManager.instance.player2Score++;
+            }
+            GameManager.instance.SpawnBall();
+            Destroy(gameObject);
+
+            if (GameManager.instance.goldenGoal) 
+            {
+                GameManager.instance.GameOver();
+            }
+        }
+
+        if (col.gameObject.tag == "Goal 2")
+        {
+            soundManager.instance.GoalSfx();
+            GameManager.instance.player1Score++;
+            if (bonusGoal)
+            {
+                GameManager.instance.player1Score++;
+            }
+            GameManager.instance.SpawnBall();
+            Destroy(gameObject);
+
+            if (GameManager.instance.goldenGoal) 
+            {
+                GameManager.instance.GameOver();
+            }
+        }
+    }
     private IEnumerator DelayBounce()
     {
         isBounce = true;
