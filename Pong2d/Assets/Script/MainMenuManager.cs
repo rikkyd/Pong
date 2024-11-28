@@ -10,12 +10,20 @@ public class MainMenuManager : MonoBehaviour
     public GameObject MainPanel;
     public GameObject HTPPanel;
     public GameObject TimerPanel;
+    public GameObject BallSelectionPanel;
+
+    [Header("Bola Prefabs")]
+    public GameObject BallPrefab1;
+    public GameObject BallPrefab2;
+    public GameObject BallPrefab3;
+    private GameObject selectedBallPrefab;
     // Start is called before the first frame update
     void Start()
     {
         MainPanel.SetActive(true);
         HTPPanel.SetActive(false);
         TimerPanel.SetActive(false);
+        BallSelectionPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -55,6 +63,35 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartBtn()
     {
+        HTPPanel.SetActive(false);
+        BallSelectionPanel.SetActive(true);
+        soundManager.instance.UIClickSfx();
+    }
+
+    public void SelectBall1()
+    {
+        selectedBallPrefab = BallPrefab1;
+        BallSelectionPanel.SetActive(false); // Sembunyikan panel bola setelah memilih
+        StartGame();
+    }
+
+    public void SelectBall2()
+    {
+        selectedBallPrefab = BallPrefab2;
+        BallSelectionPanel.SetActive(false); // Sembunyikan panel bola setelah memilih
+        StartGame();
+    }
+
+    public void SelectBall3()
+    {
+        selectedBallPrefab = BallPrefab3;
+        BallSelectionPanel.SetActive(false); // Sembunyikan panel bola setelah memilih
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        GameData.instance.selectedBallPrefab = selectedBallPrefab; // Menyimpan pilihan bola ke GameData
         SceneManager.LoadScene("2. Gameplay");
         soundManager.instance.UIClickSfx();
     }

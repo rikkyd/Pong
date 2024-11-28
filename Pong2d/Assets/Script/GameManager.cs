@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
 
         goldenGoalUI.SetActive(false);
 
+        BallPrefab = GameData.instance.selectedBallPrefab;
         timer = GameData.instance.gameTimer;
         isOver = false;
         goldenGoal = false;

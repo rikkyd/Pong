@@ -9,6 +9,7 @@ public class GameData : MonoBehaviour
 
     public bool isSinglePlayer;
     public float gameTimer;
+     public GameObject selectedBallPrefab;
 
     private void Awake()
     {

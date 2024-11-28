@@ -3621,7 +3621,7 @@ MonoBehaviour:
   goldenGoal: 0
   isSpawnPowerUp: 0
   ballSpawned: {fileID: 0}
-  BallPrefab: {fileID: 7209606338628654904, guid: 40d16818a5b81804195f1b398c0686a7, type: 3}
+  BallPrefab: {fileID: 0}
   powerUp:
   - {fileID: 7813035540147276570, guid: 390af7c889ddbd3499857737964d8adb, type: 3}
   - {fileID: 2965258671615372856, guid: c890483086264524fb63fca9398403a7, type: 3}
